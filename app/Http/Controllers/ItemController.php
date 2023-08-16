@@ -6,11 +6,19 @@ use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Models\Collection;
 use App\Models\Item;
+use App\Services\ImageReaderHelper;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ItemController extends Controller
 {
+    private ImageReaderHelper $imageReaderHelper;
+
+    public function __construct(ImageReaderHelper $imageReaderHelper)
+    {
+        $this->imageReaderHelper = $imageReaderHelper;
+    }
+
     public function index()
     {
         //
@@ -29,10 +37,19 @@ class ItemController extends Controller
             $path = Storage::disk('s3')->putFileAs($directory, $request->image, $imageName);
             $url = Storage::url($path);
 
+            $dominantColor = $this->imageReaderHelper->getDominant($url);
+            $averageColor = $this->imageReaderHelper->getAverage($url);
+
             $item = $collection->items()->create([
                 'name' => $request->get('name'),
                 'image_url' => $url,
                 'popularity' => $request->get('popularity'),
+                'a_red' => $averageColor['red'],
+                'a_green' => $averageColor['green'],
+                'a_blue' => $averageColor['blue'],
+                'd_red' => $dominantColor['red'],
+                'd_green' => $dominantColor['green'],
+                'd_blue' => $dominantColor['blue'],
             ]);
 
             return new JsonResponse($item->toArray(), JsonResponse::HTTP_CREATED);

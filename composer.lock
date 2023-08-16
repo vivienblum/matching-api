@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7e437bd47dc6a58b52f5285ac3f38215",
+    "content-hash": "93374e52213a7574164e1f1f4206ea36",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -154,6 +154,66 @@
                 "source": "https://github.com/aws/aws-sdk-php/tree/3.269.0"
             },
             "time": "2023-04-26T18:21:04+00:00"
+        },
+        {
+            "name": "brianmcdo/image-palette",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brianmcdo/ImagePalette.git",
+                "reference": "d48d828c33a438d8fbeed3f76534ad1db853bb9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brianmcdo/ImagePalette/zipball/d48d828c33a438d8fbeed3f76534ad1db853bb9f",
+                "reference": "d48d828c33a438d8fbeed3f76534ad1db853bb9f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "php": ">=5.4.0"
+            },
+            "replace": {
+                "bfoxwell/image-palette": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BrianMcdo\\ImagePalette\\": "src/BrianMcdo/ImagePalette"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian McDonald",
+                    "email": "brian@brianmcdonald.io",
+                    "homepage": "http://brianmcdonald.io",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Gandalf the Grey",
+                    "homepage": "https://github.com/gandalfx",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Extracts colors from an image and generates a color palette against a whitelist of colors.",
+            "homepage": "https://github.com/BrianMcdo/ImagePalette",
+            "keywords": [
+                "color",
+                "extractor",
+                "gd",
+                "image",
+                "laravel",
+                "palette"
+            ],
+            "support": {
+                "issues": "https://github.com/brianmcdo/ImagePalette/issues",
+                "source": "https://github.com/brianmcdo/ImagePalette/tree/master"
+            },
+            "time": "2015-10-25T01:38:04+00:00"
         },
         {
             "name": "brick/math",

@@ -22,6 +22,12 @@ return new class extends Migration
                 ->nullable();
             $table->unsignedTinyInteger('a_green')
                 ->nullable();
+            $table->unsignedTinyInteger('d_red')
+                ->nullable();
+            $table->unsignedTinyInteger('d_blue')
+                ->nullable();
+            $table->unsignedTinyInteger('d_green')
+                ->nullable();
 
             $table->timestamps();
 

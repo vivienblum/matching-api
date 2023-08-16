@@ -18,6 +18,9 @@ class Item extends Model
         'a_red',
         'a_blue',
         'a_green',
+        'd_red',
+        'd_blue',
+        'd_green',
     ];
 
     public function collection(): BelongsTo
