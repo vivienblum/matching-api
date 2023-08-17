@@ -43,7 +43,7 @@ class ItemController extends Controller
             $item = $collection->items()->create([
                 'name' => $request->get('name'),
                 'image_url' => $url,
-                'popularity' => $request->get('popularity'),
+                'popularity' => $request->get('popularity', 1),
                 'a_red' => $averageColor['red'],
                 'a_green' => $averageColor['green'],
                 'a_blue' => $averageColor['blue'],

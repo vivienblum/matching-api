@@ -8,7 +8,7 @@ class ImageReaderHelper
 {
     public function getDominants(string $url): ?array
     {
-        $palette = new ImagePalette($url);
+        $palette = new ImagePalette($url, 1);
 
         return $palette->getColors();
     }
