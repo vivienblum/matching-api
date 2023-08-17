@@ -578,4 +578,248 @@ class TransformerTest extends TestCase
         ];
         $this->assertSame($expectedMatrix, $matrix);
     }
+
+    public function testItReducesTheMatrixForLandscape(): void
+    {
+        $matrix = $this->sut->reduce('tests/mixtures/big-image-pixelated-landscape.png');
+
+        $expectedMatrix = [
+            [
+                [
+                    'red' => 80,
+                    'green' => 109,
+                    'blue' => 229,
+                ],
+                [
+                    'red' => 80,
+                    'green' => 109,
+                    'blue' => 229,
+                ],
+                [
+                    'red' => 82,
+                    'green' => 111,
+                    'blue' => 231,
+                ],
+                [
+                    'red' => 82,
+                    'green' => 111,
+                    'blue' => 231,
+                ],
+                [
+                    'red' => 82,
+                    'green' => 112,
+                    'blue' => 232,
+                ],
+                [
+                    'red' => 82,
+                    'green' => 111,
+                    'blue' => 231,
+                ],
+                [
+                    'red' => 82,
+                    'green' => 112,
+                    'blue' => 232,
+                ],
+                [
+                    'red' => 83,
+                    'green' => 112,
+                    'blue' => 232,
+                ],
+                [
+                    'red' => 84,
+                    'green' => 113,
+                    'blue' => 233,
+                ],
+            ],
+            [
+                [
+                    'red' => 100,
+                    'green' => 123,
+                    'blue' => 249,
+                ],
+                [
+                    'red' => 101,
+                    'green' => 130,
+                    'blue' => 250,
+                ],
+                [
+                    'red' => 102,
+                    'green' => 131,
+                    'blue' => 251,
+                ],
+                [
+                    'red' => 102,
+                    'green' => 131,
+                    'blue' => 251,
+                ],
+                [
+                    'red' => 102,
+                    'green' => 131,
+                    'blue' => 251,
+                ],
+                [
+                    'red' => 102,
+                    'green' => 131,
+                    'blue' => 251,
+                ],
+                [
+                    'red' => 102,
+                    'green' => 131,
+                    'blue' => 251,
+                ],
+                [
+                    'red' => 102,
+                    'green' => 131,
+                    'blue' => 251,
+                ],
+                [
+                    'red' => 103,
+                    'green' => 132,
+                    'blue' => 252,
+                ],
+            ],
+            [
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+            ],
+            [
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 110,
+                    'green' => 136,
+                    'blue' => 249,
+                ],
+                [
+                    'red' => 234,
+                    'green' => 209,
+                    'blue' => 205,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 117,
+                    'green' => 130,
+                    'blue' => 241,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+            ],
+            [
+                [
+                    'red' => 0,
+                    'green' => 167,
+                    'blue' => 0,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 204,
+                    'green' => 112,
+                    'blue' => 64,
+                ],
+                [
+                    'red' => 148,
+                    'green' => 67,
+                    'blue' => 13,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 107,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+                [
+                    'red' => 188,
+                    'green' => 255,
+                    'blue' => 25,
+                ],
+                [
+                    'red' => 109,
+                    'green' => 136,
+                    'blue' => 254,
+                ],
+            ],
+        ];
+        $this->assertSameSize($expectedMatrix, $matrix);
+    }
 }

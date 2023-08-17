@@ -13,7 +13,7 @@ class Transformer
 
         $extension = substr(strrchr($url, '.'), 1);
 
-        switch($extension) {
+        switch ($extension) {
             case 'jpg':
                 $image = imagecreatefromjpeg($url);
                 break;
@@ -80,12 +80,11 @@ class Transformer
 
         $reducedMatrix = [];
         $heightStep = (int) ceil($height/$maxHeight);
-        $widthStep = (int) ceil($width/$maxWidth) + 1;
+        $widthStep = (int) ceil($width/$maxWidth);
 
         for ($y = $heightStep/2; $y <= $height; $y += $heightStep) {
             $row = [];
-            for ($x = 0; $x <= $width; $x += $widthStep) {
-
+            for ($x = $widthStep/2; $x < $width; $x += $widthStep) {
                 $row[] = $matrix[$y][$x];
             }
 
