@@ -39,4 +39,16 @@ class ImageReaderHelperTest extends TestCase
         ];
         $this->assertSame($expectedColor, $color);
     }
+
+    public function testGetBasicAverageColor(): void
+    {
+        $color = $this->sut->getBasicAverage('tests/mixtures/ping-pong.png');
+
+        $expectedColor = [
+            'red' => 169,
+            'green' => 97,
+            'blue' => 95,
+        ];
+        $this->assertSame($expectedColor, $color);
+    }
 }

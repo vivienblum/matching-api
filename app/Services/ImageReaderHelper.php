@@ -43,4 +43,52 @@ class ImageReaderHelper
             'blue' => (int) ($blue / count($colors)),
         ];
     }
+
+    public function getBasicAverage(string $url): array
+    {
+        [$width, $height] = getimagesize($url);
+
+        $extension = substr(strrchr($url, '.'), 1);
+
+        switch ($extension) {
+            case 'jpg':
+                $image = imagecreatefromjpeg($url);
+                break;
+            case 'png':
+                $image = imagecreatefrompng($url);
+                break;
+        }
+
+        if (!$image) {
+            throw new Exception("Image type: {$extension} not valid (jpg, png)");
+        }
+
+        $red = 0;
+        $green = 0;
+        $blue = 0;
+        $nbPixels = 0;
+        for ($x = 0; $x < $width; $x++) {
+            for ($y = 0; $y < $height; $y++) {
+                $rgb = imagecolorat($image, $x, $y);
+                $r = ($rgb >> 16) & 0xFF;
+                $g = ($rgb >> 8) & 0xFF;
+                $b = $rgb & 0xFF;
+                $alpha = ($rgb & 0x7F000000) >> 24;
+                if ($alpha === 127) {
+                    continue;
+                }
+
+                $red += $r;
+                $green += $g;
+                $blue += $b;
+                $nbPixels++;
+            }
+        }
+
+        return [
+            'red' => (int) ($red / $nbPixels),
+            'green' => (int) ($green / $nbPixels),
+            'blue' => (int) ($blue / $nbPixels),
+        ];
+    }
 }

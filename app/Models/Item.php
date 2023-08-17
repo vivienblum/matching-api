@@ -16,11 +16,14 @@ class Item extends Model
         'image_url',
         'popularity',
         'a_red',
-        'a_blue',
         'a_green',
+        'a_blue',
         'd_red',
-        'd_blue',
         'd_green',
+        'd_blue',
+        'ab_red',
+        'ab_green',
+        'ab_blue',
     ];
 
     public function collection(): BelongsTo

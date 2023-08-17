@@ -2,11 +2,63 @@
 
 namespace App\Services;
 
+use App\Models\Item;
 use App\Models\Transformation;
 use Exception;
+use Illuminate\Support\Collection as IlluminateCollection;
 
 class Transformer
 {
+    public function getClosestItem(array $color, IlluminateCollection $items, string $mode): ?Item
+    {
+        $minDistance = 765;
+        $closestItem = null;
+
+        $redAccessor = "{$mode}_red";
+        $greenAccessor = "{$mode}_green";
+        $blueAccessor = "{$mode}_blue";
+
+        foreach ($items as $item) {
+            $tmpDistance = abs($item->$redAccessor - $color['red']) +
+                abs($item->$greenAccessor - $color['green']) +
+                abs($item->$blueAccessor - $color['blue']);
+            if ($tmpDistance < $minDistance) {
+                $closestItem = $item;
+                $minDistance = $tmpDistance;
+            }
+        }
+
+        return $closestItem;
+    }
+
+    public function transform(Transformation $transformation, string $mode = 'a'): Transformation
+    {
+        $itemsCollection = $transformation->collection->items;
+
+        [$matrix, $height, $width] = $this->reduce($transformation->image_url);
+
+        $items = [];
+        $pattern = [];
+        for ($y = 0; $y < $height; $y++) {
+            for ($x = 0; $x < $width; $x++) {
+                $item = $this->getClosestItem($matrix[$y][$x], $itemsCollection, $mode);
+                $pattern[$y][$x] = $item->id;
+                if (!array_key_exists($item->id, $items)) {
+                    $items[$item->id] = $item->toArray() + ['quantity' => 1];
+                } else {
+                    $items[$item->id]['quantity'] += 1;
+                }
+            }
+        }
+
+        $transformation->update([
+            'pattern' => $pattern,
+            'items' => collect($items)->sortByDesc('quantity')->values()->toArray(),
+        ]);
+
+        return $transformation;
+    }
+
     public function fromImageToMatrix(string $url): array
     {
         [$width, $height] = getimagesize($url);
@@ -91,6 +143,6 @@ class Transformer
             $reducedMatrix[] = $row;
         }
 
-        return $reducedMatrix;
+        return [$reducedMatrix, $maxHeight, $maxWidth];
     }
 }

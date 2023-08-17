@@ -39,6 +39,7 @@ class ItemController extends Controller
 
             $dominantColor = $this->imageReaderHelper->getDominant($url);
             $averageColor = $this->imageReaderHelper->getAverage($url);
+            $averageBasicColor = $this->imageReaderHelper->getBasicAverage($url);
 
             $item = $collection->items()->create([
                 'name' => $request->get('name'),
@@ -50,6 +51,9 @@ class ItemController extends Controller
                 'd_red' => $dominantColor['red'],
                 'd_green' => $dominantColor['green'],
                 'd_blue' => $dominantColor['blue'],
+                'ab_red' => $averageBasicColor['red'],
+                'ab_green' => $averageBasicColor['green'],
+                'ab_blue' => $averageBasicColor['blue'],
             ]);
 
             return new JsonResponse($item->toArray(), JsonResponse::HTTP_CREATED);
