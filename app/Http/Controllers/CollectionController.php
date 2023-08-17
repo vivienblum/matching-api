@@ -30,7 +30,7 @@ class CollectionController extends Controller
 
     public function show(Collection $collection)
     {
-        return new JsonResponse($collection->load('items')->toArray(), JsonResponse::HTTP_OK);
+        return new JsonResponse($collection->toArray(), JsonResponse::HTTP_OK);
     }
 
     public function update(UpdateCollectionRequest $request, Collection $collection)

@@ -19,9 +19,9 @@ class ItemController extends Controller
         $this->imageReaderHelper = $imageReaderHelper;
     }
 
-    public function index()
+    public function index(Collection $collection)
     {
-        //
+        return new JsonResponse($collection->items, JsonResponse::HTTP_OK);
     }
 
     public function store(StoreItemRequest $request, Collection $collection)
