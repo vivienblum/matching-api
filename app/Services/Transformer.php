@@ -35,11 +35,13 @@ class Transformer
     {
         $itemsCollection = $transformation->collection->items;
 
-        [$matrix, $height, $width] = $this->reduce($transformation->image_url);
+        $matrix = $this->reduce($transformation->image_url);
 
         $items = [];
         $pattern = [];
+        $height = count($matrix);
         for ($y = 0; $y < $height; $y++) {
+            $width = count($matrix[$y]);
             for ($x = 0; $x < $width; $x++) {
                 $item = $this->getClosestItem($matrix[$y][$x], $itemsCollection, $mode);
                 $pattern[$y][$x] = $item->id;
@@ -99,7 +101,7 @@ class Transformer
     public function reduce(string $url): array
     {
         $matrix = $this->fromImageToMatrix($url);
-        //
+
         $maxHeight = 0;
         $maxWidth = 0;
         [$width, $height] = getimagesize($url);
@@ -112,7 +114,7 @@ class Transformer
                 }
             }
 
-            if ($tmpWidth >= $maxWidth) {
+            if ($tmpWidth > $maxWidth) {
                 $maxWidth = $tmpWidth;
             }
         }
@@ -143,6 +145,6 @@ class Transformer
             $reducedMatrix[] = $row;
         }
 
-        return [$reducedMatrix, $maxHeight, $maxWidth];
+        return $reducedMatrix;
     }
 }

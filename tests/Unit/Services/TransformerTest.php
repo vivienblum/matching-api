@@ -181,7 +181,7 @@ class TransformerTest extends TestCase
 
     public function testItReducesTheMatrixForPortrait(): void
     {
-        [$matrix, $maxHeight, $maxWidth] = $this->sut->reduce('tests/mixtures/big-image-pixelated-portrait.png');
+        $matrix = $this->sut->reduce('tests/mixtures/big-image-pixelated-portrait.png');
 
         $expectedMatrix = [
             [
@@ -415,7 +415,7 @@ class TransformerTest extends TestCase
 
     public function testItReturnsSameMatrixWhileReducingWhenTheMatrixIsMin(): void
     {
-        [$matrix, $maxHeight, $maxWidth] = $this->sut->reduce('tests/mixtures/small-image.jpg');
+        $matrix = $this->sut->reduce('tests/mixtures/small-image.jpg');
 
         $expectedMatrix = [
             [
@@ -578,7 +578,7 @@ class TransformerTest extends TestCase
 
     public function testItReducesTheMatrixForLandscape(): void
     {
-        [$matrix, $maxHeight, $maxWidth] = $this->sut->reduce('tests/mixtures/big-image-pixelated-landscape.png');
+        $matrix = $this->sut->reduce('tests/mixtures/big-image-pixelated-landscape.png');
 
         $expectedMatrix = [
             [
