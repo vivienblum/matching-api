@@ -31,9 +31,9 @@ class Transformer
         return $closestItem;
     }
 
-    public function transform(Transformation $transformation, string $mode = 'a'): Transformation
+    public function transform(Transformation $transformation, string $mode = 'a', int $popularity = 0): Transformation
     {
-        $itemsCollection = $transformation->collection->items;
+        $itemsCollection = $transformation->collection->items->where('popularity', '>=', $popularity);
 
         $matrix = $this->reduce($transformation->image_url);
 

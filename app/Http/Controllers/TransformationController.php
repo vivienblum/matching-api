@@ -44,7 +44,7 @@ class TransformationController extends Controller
                 'collection_id' => $request->get('collection_id'),
             ]);
 
-            $this->transformer->transform($transformation, 'ab');
+            $this->transformer->transform($transformation, 'ab', $request->get('popularity', 0));
         }
 
         return new JsonResponse($transformation->toArray(), JsonResponse::HTTP_CREATED);

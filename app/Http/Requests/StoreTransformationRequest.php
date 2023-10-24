@@ -16,6 +16,7 @@ class StoreTransformationRequest extends FormRequest
         return [
             'collection_id' => ['integer', 'exists:collections,id'],
             'image' => ['required', 'image'],
+            'popularity' => ['integer', 'min:0', 'max:10'],
         ];
     }
 }

@@ -77,24 +77,28 @@ class TransformerTest extends TestCase
         ]);
         $this->blue1 = $this->collection->items()->create([
             'name' => 'Blue 1',
+            'popularity' => 3,
             'a_red' => 0,
             'a_green' => 0,
             'a_blue' => 255,
         ]);
         $this->blue2 = $this->collection->items()->create([
             'name' => 'Blue 2',
+            'popularity' => 1,
             'a_red' => 50,
             'a_green' => 50,
             'a_blue' => 200,
         ]);
         $this->blue3 = $this->collection->items()->create([
-            'name' => 'Blue 1',
+            'name' => 'Blue 3',
+            'popularity' => 2,
             'a_red' => 75,
             'a_green' => 75,
             'a_blue' => 150,
         ]);
         $this->blue4 = $this->collection->items()->create([
             'name' => 'Blue 4',
+            'popularity' => 4,
             'a_red' => 90,
             'a_green' => 90,
             'a_blue' => 120,
@@ -177,7 +181,7 @@ class TransformerTest extends TestCase
             'collection_id' => $this->collection->id,
         ]);
 
-        $freshTransformation = $this->sut->transform($transformation, 'a');
+        $freshTransformation = $this->sut->transform($transformation, 'a', 0);
 
         $expectedPattern = [
             [
